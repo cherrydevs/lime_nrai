@@ -1,0 +1,14 @@
+[package]
+name = "lime_nrai"
+version = "0.1.0"
+edition = "2018"
+license = "GPL-3.0-or-later"
+homepage = "https://limey.me/lime_nrai"
+description = "lime_nrai, LimeyTeam's Not Really an AI software."
+documentation = "https://docs.rs/lime_nrai"
+readme = "README.md"
+repository = "https://github.com/limeyteam/lime_nrai"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
