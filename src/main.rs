@@ -17,7 +17,7 @@ fn main() {
 
     // create the lime variables
     memory.push(Memory::Text(String::from("lime")));
-    reference.push(Ref::Text(String::from("a green bitter fruit")));
+    reference.push(Ref::Text(String::from("aa green bitter fruit")));
     similar.push(Ref::Similar(vec![Ref::Text(String::from("lemon"))]));
 
 
