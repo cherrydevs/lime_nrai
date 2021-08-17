@@ -1,3 +1,4 @@
+// cargo wont stop complaining
 #[derive(Debug)]
 enum Memory {
     Text(String)
