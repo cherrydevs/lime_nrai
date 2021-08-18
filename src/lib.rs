@@ -1,30 +1,26 @@
 // cargo wont stop complaining
 mod delta;
+mod memory;
 
 #[cfg(test)]
 mod tests {
-    use crate::delta::*;
+    use crate::{delta::{delta_init}, memory::*};
     use futures::executor::block_on;
+    use easy_ml::matrices::Matrix;
     #[test]
     fn test() {
-        let mut instance = Instance::new();
-        instance.memory.push(Memory::Text(String::from("lime")));
-        instance.reference.push(Ref::Text(String::from("a green bitter fruit")));
-        instance.similar.push(Ref::Similar(vec![Ref::Text(String::from("lemon"))]));
-        for x in 0..4 {
-            // they all have the same weight, weight translation coming soon
-            let node = neraul_node(&instance, String::from("lemon"));
-            block_on(node);
-        }
-    }
+        let mut instance = delta_init();
+        // first create some data to fit a curve to
+        let x: Matrix<f32> = Matrix::column(
+            vec![0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]);
 
-    async fn neraul_node(instance: &Instance, matcher: String) {
-        // get the lime reference
+        let y = x.map(|x| x.powi(2) + x.sin());
+        instance.algo_train(x, y);
 
-        let indexsim = match_similar(&instance.similar, String::from(matcher));
-
-        // print out things that match with lemon in similar state
-        println!("what it matched: {0:?},matching string: {1:?}", instance.memory[indexsim], instance.similar[indexsim]);
+        // for the lmai later
+        instance.memory.memory.push(Memory::Text(String::from("lime")));
+        instance.memory.reference.push(Ref::Text(String::from("a green bitter fruit")));
+        instance.memory.similar.push(Ref::Similar(vec![Ref::Text(String::from("lemon"))]));
     }
 }
 
