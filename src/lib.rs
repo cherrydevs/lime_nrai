@@ -1,6 +1,6 @@
 // cargo wont stop complaining
-mod delta;
-mod memory;
+pub mod delta;
+pub mod memory;
 
 #[cfg(test)]
 mod tests {
